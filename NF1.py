@@ -21,7 +21,7 @@ def single_class_result(sparql, cls_str):
     for x in subclass_out["results"]["bindings"]:
         numerator = int(x["number"]["value"])
         if (cls_str != x["subclass"]["value"]) & (numerator/denominator<1.0):
-        result.append((cls_str, x["subclass"]["value"], numerator/denominator))
+            result.append((cls_str, x["subclass"]["value"], numerator/denominator))
     return pd.DataFrame(result, columns=["ConceptA", "ConceptB", "Probability"])
 def get_subsumption(sparql):
     list_query = """SELECT DISTINCT ?subclass2 ?subclass1"""
@@ -58,6 +58,6 @@ if __name__ == "__main__":
             "http://dbpedia.org/ontology/Food"]
     type1_axioms = []
     for domain in domains:
-    type1_axioms.append(get_domain_result(sparql, domain))
+        type1_axioms.append(get_domain_result(sparql, domain))
     type1_axioms_result = pd.concat(type1_axioms, ignore_index=True)
     type1_axioms_result.to_csv("NF1.csv", index=False)
