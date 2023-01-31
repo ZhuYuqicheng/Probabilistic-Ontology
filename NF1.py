@@ -47,7 +47,7 @@ if __name__ == "__main__":
     sparql.setReturnFormat(JSON)
     loop_class = get_loop_class(sparql)
     result = []
-    for cls in loop_class[:5]:
+    for cls in loop_class:
         result.append(single_class_result(sparql, cls))
         print(cls)
     result_pd = pd.concat(result, ignore_index=True)
