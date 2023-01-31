@@ -22,6 +22,7 @@ def single_class_result(sparql, cls_str):
         numerator = int(x["number"]["value"])
         if (cls_str != x["subclass"]["value"]) & (numerator/denominator<1.0):
             result.append((cls_str, x["subclass"]["value"], numerator/denominator))
+    print((cls_str, x["subclass"]["value"], numerator/denominator))
     return pd.DataFrame(result, columns=["ConceptA", "ConceptB", "Probability"])
 def get_subsumption(sparql):
     list_query = """SELECT DISTINCT ?subclass2 ?subclass1"""
